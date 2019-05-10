@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
+var Note = require('../model/note')
 
 /* GET users listing. */
 router.get('/notes', function(req, res, next) {
-  console.log('/notes')
+  var data  = Note.getAll()
+  Note.findAll({raw:true}).then(()=>{
+    res.send({status: 0, data: data})
+  })
 });
 router.post('/notes/add',function(req, res, next){
   var note = req.body.note
