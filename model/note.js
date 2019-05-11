@@ -1,10 +1,13 @@
 // 这个文件的内容是对sequelize数据库进行操作的
 const Sequelize = require('sequelize');
 
+var path = require('path')
 const sequelize = new Sequelize(undefined, undefined, undefined, {
   host: 'localhost',
   dialect: 'sqlite',
-  storage: '../database/database.sqlite'
+  storage: path.join(__dirname, '../database/database.sqlite')
+// 其中__dirname表示当前文件所在的路径，这个一句的意思就是取当前文件所在路径的下的
+// '../database/database.sqlite'为所要的路径
 });
 
 //  test 在命令终端的对应目录下运行node note.js就能检测是否能产生一个问价
@@ -41,3 +44,5 @@ const Note = sequelize.define('note', {
 // Note.findAll({raw:true,where:{id:1}}).then((notes)=>{
 //     console.log(notes)
 // })
+
+module.exports.Note = Note;
