@@ -3,29 +3,53 @@ var router = express.Router();
 
 var passport = require('passport');
 var GitHubStrategy = require('passport-github').Strategy;
-var JirenguStrategy = require('passport-girengu').Strategy;
-// 这里使用的第三方登录的情况，那我可以使用微信，QQ进行登录了
 
-passport.serializeUser((user,done)=>{
-    console.log('---serializeUser---')
-    console.log(user)
-    done(null,user)
+
+
+passport.serializeUser(function(user, done) {
+  console.log('---serializeUser---')
+  console.log(user)
+  done(null, user);
 });
-passport.deserializeUser((user,done)=>{
-    console.log('---deserializeUser')
-    done(null,obj);
-})
-passport.use(new JirenguStrategy)({
-    clientID: '',
-    tokenURL: '',
-    clientSerect:'',
-    callbackURL:'',
-    function (accessToken,refreshToken,profile,done) {
+
+passport.deserializeUser(function(obj, done) {
+  console.log('---deserializeUser---')
+  done(null, obj);
+});
+
+passport.use(new GitHubStrategy)({
+    clientID: 'eccb61ff6a77bf519f92',
+    clientSerect:'fb156e5e8546f3b840d5da8716a286dd7db7f576',
+    callbackURL:'http://localhost:8080/auth/github/callback',
+    function(accessToken, refreshToken, profile, cb) {
+        // User.findOrCreate({ githubId: profile.id }, function (err, user) {
+        //   return cb(err, user);
+        // });
         done(null,profile)
-    }
+      }
 })
 
-router.get('/jirengu',
-    passport.authenticate('jirengu'));
+
+router.get('/logout', function(req, res){
+  req.session.destroy();
+  res.redirect('/');
+})
+
+router.get('/github',
+  passport.authenticate('github'));
+
+router.get('/github/callback',
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    req.session.user = {
+      id: req.user.id,
+      username: req.user.displayName || req.user.username,
+      avatar: req.user._json.avatar_url,
+      provider: req.user.provider
+    };
+    res.redirect('/');
+  });
+
+
 
 module.exports = router;
