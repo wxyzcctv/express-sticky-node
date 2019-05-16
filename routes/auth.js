@@ -17,17 +17,18 @@ passport.deserializeUser(function(obj, done) {
   done(null, obj);
 });
 
-passport.use(new GitHubStrategy)({
+passport.use(new GitHubStrategy({
     clientID: 'eccb61ff6a77bf519f92',
     clientSerect:'fb156e5e8546f3b840d5da8716a286dd7db7f576',
     callbackURL:'http://localhost:8080/auth/github/callback',
-    function(accessToken, refreshToken, profile, cb) {
+    },
+    function(accessToken, refreshToken, profile, done) {
         // User.findOrCreate({ githubId: profile.id }, function (err, user) {
         //   return cb(err, user);
         // });
         done(null,profile)
-      }
-})
+    }
+));
 
 
 router.get('/logout', function(req, res){
