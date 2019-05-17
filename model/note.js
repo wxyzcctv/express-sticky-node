@@ -42,13 +42,13 @@ const Note = sequelize.define('note', {
 // 以下内容是为了创建一个表，如果这个表在创建之前没有的话就创建一个新的
 // 如果已经有的话就不会改变这个表，创建表格中的内容，再查找表格中的内容
 // 如果表最开始是不存在的，那么就需要先创建一个表
-// Note.sync({ force: true }).then(() => {
-//     Note.create({text: 'hello world',uid: 'jjjjjj'}).then(()=>{
-//         Note.findAll({raw:true}).then((notes)=>{
-//             console.log(notes)
-//         })
-//     })
-// });
+Note.sync().then(() => {
+    Note.create({text: 'hello world',uid: 'jjjjjj'}).then(()=>{
+        Note.findAll({raw:true}).then((notes)=>{
+            console.log(notes)
+        })
+    })
+});
 
 // 以下是为了找到对应id为1的字段，主要的是通过where来进行的
 // Note.findAll({raw:true,where:{id:1}}).then((notes)=>{
