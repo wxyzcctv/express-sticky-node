@@ -1,0 +1,1 @@
+(()=>{var r,X={402:r=>{r.exports.a="XXXXXXXXXXX"},805:(r,X,o)=>{var b=o(402).a;r.exports={a:b,b:"bbbbbbbb"}}},o={};r=function r(b){if(o[b])return o[b].exports;var e=o[b]={exports:{}};return X[b](e,e.exports,r),e.exports}(805),console.log(r)})();
