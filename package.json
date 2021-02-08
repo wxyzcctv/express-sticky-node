@@ -9,11 +9,15 @@
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
+    "css-loader": "^5.0.1",
     "debug": "~2.6.9",
     "ejs": "~2.6.1",
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
-    "morgan": "~1.9.1"
+    "less": "^4.1.1",
+    "less-loader": "^8.0.0",
+    "morgan": "~1.9.1",
+    "style-loader": "^2.0.0"
   },
   "devDependencies": {
     "onchange": "^7.1.0",
