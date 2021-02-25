@@ -11,7 +11,8 @@ module.exports = {
         filename: "index.js"
     },
     module: {
-        rules: [{
+        rules: [
+          {
             test: /\.less$/,
             // use: ExtractTextPlugin.extract({
             //     fallback: "style-loader",
@@ -24,7 +25,20 @@ module.exports = {
             }, {
                 loader: "less-loader" // compiles Less to CSS
             }]
-        }]
+          },
+          // 打包图片需要使用的loader，limit限制图片的大小，如果设置的太小不符合图片的实际大小会自动转为file-loader进行打包
+          {
+            test: /\.(png|jpg|gif)$/,
+            use: [
+              {
+                loader: 'url-loader',
+                options: {
+                  limit: 20000
+                }
+              }
+            ]
+          }
+      ]
     },
     resolve: {
         alias: {
