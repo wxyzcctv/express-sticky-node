@@ -80,6 +80,7 @@ Note.prototype = {
                 $noteCt.data('before', $noteCt.html());
                 self.setLayout();
                 if (self.id) {
+                    // 更新时此处存在问题
                     self.edit($noteCt.html())
                 } else {
                     self.add($noteCt.html())
