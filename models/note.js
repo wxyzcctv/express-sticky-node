@@ -21,6 +21,9 @@ const Note = sequelize.define('Note', {
     // 在这里定义模型属性
     text: {
         type: DataTypes.STRING,
+    },
+    uid: {
+        type: DataTypes.STRING,
     }
 });
 
