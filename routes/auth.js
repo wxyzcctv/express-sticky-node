@@ -6,39 +6,49 @@ const HttpsProxyAgent = require('https-proxy-agent');
 var passport = require('passport');
 var GitHubStrategy = require('passport-github').Strategy;
 
-passport.serializeUser(function(user, done) {
+passport.serializeUser(function (user, done) {
     console.log('---serializeUser---')
     console.log(user)
     done(null, user);
 });
 
-passport.deserializeUser(function(obj, done) {
+passport.deserializeUser(function (obj, done) {
     console.log('---deserializeUser---')
     done(null, obj);
 });
 
-const gStrategy = new GitHubStrategy({
-    clientID: '2bb9c2782c0b89133739',
-    clientSecret: 'f9f3f726633b2d552a01ef83acdb0c4a62ed6a66',
+// const gStrategy = new GitHubStrategy({
+//     clientID: 'af05a85235b6e3fc730a',
+//     clientSecret: 'e4d3f9cf1e20fd113e307bf061aaeab96b243660',
+//     callbackURL: "http://localhost:8080/auth/github/callback"
+// },
+//     function (accessToken, refreshToken, profile, done) {
+//         // User.findOrCreate({ githubId: profile.id }, function (err, user) {
+//         // });
+//         done(null, profile);
+//     }
+// )
+
+// const agent = new HttpsProxyAgent(process.env.HTTP_PROXY || "http://localhost:8080");
+// gStrategy._oauth2.setAgent(agent);
+
+passport.use(new GitHubStrategy({
+    clientID: 'af05a85235b6e3fc730a',
+    clientSecret: 'e4d3f9cf1e20fd113e307bf061aaeab96b243660',
     callbackURL: "http://localhost:8080/auth/github/callback"
-  },
-function(accessToken, refreshToken, profile, done) {
-    // User.findOrCreate({ githubId: profile.id }, function (err, user) {
-    // });
-    done(null, profile);
-  }
-)
-
-const agent = new HttpsProxyAgent(process.env.HTTP_PROXY || "http://localhost:8080");
-gStrategy._oauth2.setAgent(agent);
-
-passport.use(gStrategy);
+},
+    function (accessToken, refreshToken, profile, done) {
+        // User.findOrCreate({ githubId: profile.id }, function (err, user) {
+        // });
+        done(null, profile);
+    }
+));
 // 请求登录GitHub
 router.get('/github', passport.authenticate('github'));
 // 对GitHub返回指定内容进行处理
 router.get('/github/callback',
     passport.authenticate('github', { failureRedirect: '/login' }),
-    function(req, res) {
+    function (req, res) {
         console.log('success.......')
         console.log(req.user)
         req.session.user = {
@@ -52,7 +62,7 @@ router.get('/github/callback',
     }
 );
 // 注销
-router.get('/logout', function(req, res){
+router.get('/logout', function (req, res) {
     req.session.destroy();
     // 注销成功后返回首页
     res.redirect('/');
