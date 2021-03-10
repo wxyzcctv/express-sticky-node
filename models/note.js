@@ -23,16 +23,18 @@ const Note = sequelize.define('Note', {
         type: DataTypes.STRING,
     }
 });
-/*
+
 // 基本用法
-(async () => {
-    // 如果表不存在,则创建该表(如果已经存在,则不执行任何操作)
-    await Note.sync();
-    await Note.create({ text: "hello world" });
-    // findAll中加入参数{ raw: true }表示查询原始存入数据
-    const note = await Note.findAll({ raw: true });
-    console.log(note)
-})();
-*/
+// (async () => {
+//     // 清库
+//     await Note.sync({ force: true })
+//     // 如果表不存在,则创建该表(如果已经存在,则不执行任何操作)
+//     // await Note.sync();
+//     // await Note.create({ text: "hello world" });
+//     // // findAll中加入参数{ raw: true }表示查询原始存入数据
+//     // const note = await Note.findAll({ raw: true });
+//     // console.log(note)
+// })();
+
 
 module.exports.Note = Note;
