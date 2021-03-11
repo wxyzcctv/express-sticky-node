@@ -1,37 +1,20 @@
 {
   "name": "express-sticky-node",
-  "version": "0.0.0",
-  "private": true,
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "start": "set PORT=8080 && node ./bin/www",
-    "webpack": "webpack --config ./src/webpack.config.js",
-    "watch": "onchange \"src/**/*.js\" \"src/**/*.less\" -- npm run webpack"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "dependencies": {
-    "cookie-parser": "~1.4.4",
-    "debug": "~2.6.9",
-    "ejs": "~2.6.1",
-    "express": "~4.16.1",
-    "express-session": "^1.17.1",
-    "http-errors": "~1.6.3",
-    "https-proxy-agent": "^5.0.0",
-    "morgan": "~1.9.1",
-    "passport": "^0.4.1",
-    "passport-github": "^1.1.0",
-    "sequelize": "^6.5.0",
-    "sqlite3": "^5.0.2"
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wxyzcctv/express-sticky-node.git"
   },
-  "devDependencies": {
-    "css-loader": "^5.0.2",
-    "extract-text-webpack-plugin": "^3.0.2",
-    "file-loader": "^6.2.0",
-    "less": "^4.1.1",
-    "less-loader": "^8.0.0",
-    "onchange": "^7.1.0",
-    "postcss-loader": "^5.0.0",
-    "style-loader": "^2.0.0",
-    "url-loader": "^4.1.1",
-    "webpack": "^5.21.0",
-    "webpack-cli": "^4.5.0"
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wxyzcctv/express-sticky-node/issues"
+  },
+  "homepage": "https://github.com/wxyzcctv/express-sticky-node#readme"
 }
