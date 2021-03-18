@@ -1,3 +1,3 @@
-var config = require('../mod/b.js')
+var Toast = require('../mod/toast.js').Toast
 
-console.log(config)
+Toast("hello world")
