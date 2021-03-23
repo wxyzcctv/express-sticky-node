@@ -8,13 +8,9 @@ const sequelize = new Sequelize({
 
 var Note = sequelize.define('note', {
     text: {
-      type: Sequelize.STRING
+        type: Sequelize.STRING
     }
 });
-
-(async () => {
-    Note.sync()
-})();
 
 
 /*
