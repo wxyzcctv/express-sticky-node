@@ -9,9 +9,13 @@ const sequelize = new Sequelize({
 var Note = sequelize.define('note', {
     text: {
         type: Sequelize.STRING
+    },
+    uid: {
+        type: Sequelize.STRING
     }
 });
-
+// 强制删库
+// Note.sync({ force: true })
 
 /*
 (async () => {
